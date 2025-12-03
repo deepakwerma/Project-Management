@@ -1,4 +1,4 @@
-# 🚀 Project Camp Backend
+# 🚀 Backend Project
 
 A scalable backend for collaborative project management with secure authentication, role-based authorization, hierarchical tasks, project notes, file uploads, and email-based workflows.
 
