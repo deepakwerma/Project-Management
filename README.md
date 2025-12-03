@@ -1,4 +1,4 @@
-# 🚀 Backend Project
+# 🚀 Project Management - A Backend Project
 
 A scalable backend for collaborative project management with secure authentication, role-based authorization, hierarchical tasks, project notes, file uploads, and email-based workflows.
 
@@ -6,7 +6,7 @@ A scalable backend for collaborative project management with secure authenticati
 
 ## ⭐ **Overview**
 
-**Project Camp Backend** is a production-style RESTful API designed to manage:
+**Project Management** is a production-style RESTful API designed to manage:
 
 - Projects  
 - Tasks & Subtasks  
