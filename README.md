@@ -1,141 +1,149 @@
-Project Camp Backend
+# 🚀 Project Camp Backend
 
-A scalable RESTful backend for collaborative project management, featuring authentication, role-based authorization, hierarchical tasks, project notes, file uploads, and email-based security workflows.
+A scalable backend for collaborative project management with secure authentication, role-based authorization, hierarchical tasks, project notes, file uploads, and email-based workflows.
 
-📌 Overview
+---
 
-Project Camp Backend is a production-style backend system designed to manage projects, tasks, subtasks, team members, and notes within a collaborative workspace.
-It includes a complete authentication system, secure file handling, and fine-grained role-based permissions.
+## ⭐ **Overview**
 
-This project demonstrates strong backend engineering concepts including:
+**Project Camp Backend** is a production-style RESTful API designed to manage:
 
-API design
+- Projects  
+- Tasks & Subtasks  
+- Team Members  
+- Project Notes  
 
-Access control
+It demonstrates strong backend engineering concepts including:
 
-Modular architecture
+- Clean architecture  
+- API design  
+- Role-based access control (RBAC)  
+- Secure authentication  
+- Email verification  
+- File uploads  
+- Modular code structure  
 
-Database modeling
+---
 
-Secure workflows
+# 🛠️ **Tech Stack**
 
-Real-world functionalities
+| Category | Technology |
+|----------|------------|
+| Runtime | Node.js |
+| Framework | Express.js |
+| Database | MongoDB + Mongoose |
+| Authentication | JWT (Access + Refresh Tokens) |
+| Email Service | Nodemailer |
+| File Uploads | Multer |
+| Architecture | MVC + Services Layer |
+| Security | CORS, RBAC, Validation |
 
-🛠 Tech Stack
-Category	Technology
-Runtime	Node.js
-Framework	Express.js
-Database	MongoDB + Mongoose
-Authentication	JWT (Access + Refresh Tokens), Bcrypt
-Email	Nodemailer
-File Uploads	Multer
-Security	CORS, Input Validation, RBAC
-Architecture	MVC + Services Layer
-🎯 Core Features
-🔐 User Authentication & Authorization
+---
 
-User registration with email verification
+# ✨ **Core Features**
 
-Secure JWT login
+## 🔐 **Authentication & Authorization**
+- Register with email verification  
+- JWT login  
+- Access + Refresh token flow  
+- Forgot/reset password  
+- Change password  
+- Logout  
+- Role system: **Admin**, **Project Admin**, **Member**
 
-Refresh token-based session renewal
+---
 
-Change password
+## 📁 **Project Management**
+- Create projects (Admin)  
+- Update/delete projects (Admin)  
+- View user-accessible projects  
+- Project details with member count  
 
-Forgot/reset password (email-based)
+---
 
-Role-based access control
+## 👥 **Team Member Management**
+- Invite users via email  
+- View project members  
+- Update member roles (Admin only)  
+- Remove members from project  
 
-Logout flow
+---
 
-3 roles: Admin, Project Admin, Member
+## 📌 **Task Management**
+- Create tasks  
+- Update task information  
+- Delete tasks  
+- Assign tasks  
+- Task status tracking: **Todo → In Progress → Done**  
+- Attach multiple files  
+- View all tasks in a project  
 
-📁 Project Management
+---
 
-Create projects (Admin)
+## 🧩 **Subtask Management**
+- Add subtasks  
+- Update subtask details  
+- Mark subtasks as complete  
+- Delete subtasks (Admin/Project Admin only)
 
-Update or delete projects (Admin)
+---
 
-View all projects user has access to
+## 📝 **Project Notes**
+- Create notes (Admin only)  
+- View notes  
+- Update/delete notes (Admin only)  
 
-View project details including member count
+---
 
-👥 Team Member Management
+## ❤️ **System Health**
+```
 
-Invite users to a project via email
+GET /api/v1/healthcheck
 
-View project members
+```
 
-Update member roles (Admin only)
+---
 
-Remove members from projects
+# 🧱 **Architecture & Folder Structure**
 
-📌 Task Management
+```
 
-Create tasks with title, description, and assignee
-
-Update task content and status
-
-Delete tasks
-
-View all tasks in a project
-
-File attachment support (multiple uploads)
-
-Status levels: Todo, In Progress, Done
-
-🧩 Subtask Management
-
-Add subtasks to tasks
-
-Update subtask details
-
-Mark subtasks as complete
-
-Delete subtasks (Admin/Project Admin)
-
-📝 Project Notes
-
-Create notes (Admin only)
-
-View all notes
-
-Update or delete notes (Admin only)
-
-Note-level content access
-
-❤️ System Health
-
-/api/v1/healthcheck endpoint for monitoring server uptime and health
-
-🧱 Architecture & Folder Structure
 src/
 │── controllers/        # Request handlers
 │── services/           # Business logic
 │── models/             # Mongoose schemas
 │── routes/             # API routes
 │── middlewares/        # Auth, RBAC, validation
-│── utils/              # Token, email helpers
-│── config/             # DB + environment setup
+│── utils/              # Helpers (email, tokens, etc.)
+│── config/             # Environment & DB config
 │── public/images       # Uploaded files
 └── index.js            # Application entry point
 
+```
 
-This modular structure ensures scalability, clean separation of concerns, and easy maintenance.
+---
 
-🔑 Permission Matrix
-Feature	Admin	Project Admin	Member
-Create Project	✓	✗	✗
-Update/Delete Project	✓	✗	✗
-Manage Project Members	✓	✗	✗
-Create/Update/Delete Tasks	✓	✓	✗
-View Tasks	✓	✓	✓
-Update Subtask Status	✓	✓	✓
-Create/Delete Subtasks	✓	✓	✗
-Create/Update/Delete Notes	✓	✗	✗
-View Notes	✓	✓	✓
-📡 API Endpoints
-Authentication — /api/v1/auth/
+# 🔑 **Permission Matrix**
+
+| Feature                    | Admin | Project Admin | Member |
+|---------------------------|:-----:|:-------------:|:------:|
+| Create Project             | ✔ | ✖ | ✖ |
+| Update/Delete Project      | ✔ | ✖ | ✖ |
+| Manage Project Members     | ✔ | ✖ | ✖ |
+| Create/Update/Delete Tasks | ✔ | ✔ | ✖ |
+| View Tasks                 | ✔ | ✔ | ✔ |
+| Update Subtask Status      | ✔ | ✔ | ✔ |
+| Create/Delete Subtasks     | ✔ | ✔ | ✖ |
+| Create/Update/Delete Notes | ✔ | ✖ | ✖ |
+| View Notes                 | ✔ | ✔ | ✔ |
+
+---
+
+# 📡 **API Endpoints**
+
+## **Authentication — `/api/v1/auth/`**
+```
+
 POST /register
 POST /login
 POST /logout
@@ -147,7 +155,13 @@ POST /forgot-password
 POST /reset-password/:resetToken
 POST /resend-email-verification
 
-Projects — /api/v1/projects/
+```
+
+---
+
+## **Projects — `/api/v1/projects/`**
+```
+
 GET    /
 POST   /
 GET    /:projectId
@@ -159,7 +173,13 @@ POST   /:projectId/members
 PUT    /:projectId/members/:userId
 DELETE /:projectId/members/:userId
 
-Tasks — /api/v1/tasks/
+```
+
+---
+
+## **Tasks — `/api/v1/tasks/`**
+```
+
 GET    /:projectId
 POST   /:projectId
 GET    /:projectId/t/:taskId
@@ -170,56 +190,58 @@ POST   /:projectId/t/:taskId/subtasks
 PUT    /:projectId/st/:subTaskId
 DELETE /:projectId/st/:subTaskId
 
-Notes — /api/v1/notes/
+```
+
+---
+
+## **Notes — `/api/v1/notes/`**
+```
+
 GET    /:projectId
 POST   /:projectId
 GET    /:projectId/n/:noteId
 PUT    /:projectId/n/:noteId
 DELETE /:projectId/n/:noteId
 
-Health Check — /api/v1/healthcheck/
+```
+
+---
+
+## **System Health — `/api/v1/healthcheck`**
+```
+
 GET /
 
-🔒 Security Features
+```
 
-JWT authentication (access + refresh tokens)
+---
 
-Email verification workflow
+# 🔒 **Security Features**
+- JWT authentication with refresh tokens  
+- Email verification workflow  
+- Secure password reset  
+- Role-based authorization middleware  
+- Input validation on all endpoints  
+- CORS protection  
+- Secure file upload handling  
 
-Secure password reset process
+---
 
-Role-based access control middleware
+# 🗂️ **File Management**
+- Multiple file uploads for tasks  
+- Files stored under `/public/images`  
+- Metadata stored (size, MIME type, URL)  
+- Secure upload processing via Multer  
 
-Input validation on all endpoints
+---
 
-CORS configuration
+# ✔ **Success Criteria**
+- Secure user authentication & authorization  
+- Complete project lifecycle management  
+- Hierarchical task & subtask system  
+- Strong RBAC enforcement  
+- Email verification + password reset  
+- Organized, well-documented API structure  
 
-File upload validation and path security
+---
 
-🗂 File Management
-
-Multiple file attachments supported for tasks
-
-Files stored under /public/images
-
-Metadata stored (MIME type, size, URL)
-
-Safe handling through Multer
-
-✔ Success Criteria
-
-The system fulfills the following requirements:
-
-Secure user authentication and authorization
-
-Complete project lifecycle support
-
-Hierarchical task & subtask structure
-
-Highly controlled access using RBAC
-
-File attachment support
-
-Email verification + password reset
-
-Organized, well-documented API structure
