@@ -1,118 +1,108 @@
 <div align="center">
 
-# 🌓 <span style="color:#00E5FF;">Project Management API</span>
+# 🌙 <span style="color:#00E5FF;">Project Management API</span>
 
-A scalable backend for managing projects, tasks, teams, authentication & workflows.  
-Built with Node.js, Express, MongoDB, and JWT.
+A clean, scalable backend system for managing projects, tasks, teams, notes, authentication, and workflow automation.
 
-</div>
-
----
-
-<div style="background:#111; padding:20px; border-radius:10px;">
-
-## ⚠️ <span style="color:#FF5757;">Security Notice</span>
-
-This backend currently uses **only basic security**:
-
-- ✔ JWT Authentication (Access + Refresh Tokens)  
-- ✔ Password hashing using **bcrypt**  
-- ✔ Basic request validation  
-- ✔ RBAC (Role-Based Access Control)
-
-### ❗ Missing Production Security
-> *This project is not production-ready yet.*
-
-- ❌ Rate limiting  
-- ❌ Helmet Security Headers  
-- ❌ Brute-force login protection  
-- ❌ XSS / Injection sanitization  
-- ❌ CSRF protection  
-- ❌ IP throttling  
-- ❌ Logging / monitoring  
+Built with **Node.js, Express, MongoDB, JWT, and modern backend architecture.**
 
 </div>
 
 ---
 
-## 🌟 **Overview**
+## ⭐ **Overview**
 
-This is a modular and scalable REST API for:
+This Project Management API provides a production-style backend with:
 
-- Project & team management  
-- Task & subtask tracking  
-- Notes system  
-- Email workflows  
-- Authentication & role permissions  
-- File upload handling  
+- User authentication  
+- Role-based access control (RBAC)  
+- Projects, tasks, and subtasks management  
+- Team collaboration features  
+- Notes and documentation system  
+- Email-based workflows  
+- File upload support  
+
+It demonstrates backend engineering best practices and a modular, scalable architecture suitable for real-world systems.
 
 ---
 
 # 🛠️ **Tech Stack**
 
-<div style="background:#0D0D0D; padding:15px; border-radius:10px;">
+<div style="background:#0D0D0D; padding:18px; border-radius:12px;">
 
 | Category | Technology |
 |----------|------------|
 | Runtime | Node.js |
-| Framework | Express.js |
+| Server Framework | Express.js |
 | Database | MongoDB + Mongoose |
-| Authentication | JWT |
+| Authentication | JWT (Access + Refresh Tokens) |
 | Password Hashing | bcrypt |
-| File Uploads | Multer |
 | Email Service | Nodemailer |
-| Architecture | MVC + Service Layer |
-| Security | JWT, bcrypt, validation |
+| File Uploads | Multer |
+| Architecture | MVC + Services Layer |
+| Security (Basic) | JWT, bcrypt, validation, RBAC |
 
 </div>
 
 ---
 
-# ✨ **Features**
+# ✨ **Core Features**
 
-## 🔐 Authentication
-- Register + Email verification  
-- Login / Logout  
-- Access + Refresh tokens  
-- Forgot & Reset password  
+## 🔐 Authentication & Authorization
+- Register with email verification  
+- Login with JWT (access + refresh tokens)  
+- Logout  
+- Forgot & reset password  
 - Change password  
-- Role-based access (Admin, Project Admin, Member)
+- Current user details  
+- RBAC system: **Admin**, **Project Admin**, **Member**
 
 ---
 
 ## 📁 Projects
-- Create / Update / Delete (Admin)  
-- View accessible projects  
-- Member count & project details  
+- Create, update, delete projects  
+- View user-accessible projects  
+- Automatic member count  
+- Project details with hierarchical data  
 
 ---
 
-## 👥 Team Members
-- Invite via email  
-- Update roles  
+## 👥 Team Management
+- Add members to a project  
+- Update member roles  
 - Remove members  
-- View all members  
+- View all project members  
+- Email-based invitations (optional)
 
 ---
 
 ## 📌 Tasks
-- Create, update, delete  
-- Assign users to tasks  
-- Status: **Todo → In Progress → Done**  
-- Multiple file uploads  
+- Create and assign tasks  
+- Update task details  
+- Task status: **Todo → In Progress → Done**  
+- Multiple file attachments  
+- View tasks in a project  
 
 ---
 
 ## 🧩 Subtasks
-- Add subtasks  
-- Update or mark as complete  
-- Delete subtasks  
+- Add subtasks to tasks  
+- Update subtask status  
+- Edit or delete subtasks  
 
 ---
 
 ## 📝 Notes
-- Admin-only create/update/delete  
-- View all project notes  
+- Create project notes  
+- Edit or delete notes (restricted by role)  
+- View all notes for a project  
+
+---
+
+## ❤️ Health Check
+```
+GET /api/v1/healthcheck
+```
 
 ---
 
@@ -120,34 +110,34 @@ This is a modular and scalable REST API for:
 
 ```
 src/
-│── controllers/
-│── services/
-│── models/
-│── routes/
-│── middlewares/
-│── utils/
-│── config/
-│── public/images
-└── index.js
+│── controllers/        # Route handlers
+│── services/           # Business logic
+│── models/             # Mongoose schemas
+│── routes/             # API routes
+│── middlewares/        # Auth, RBAC, validation
+│── utils/              # Email, tokens, helpers
+│── config/             # Env and DB config
+│── public/images       # Uploaded files
+└── index.js            # Server entry point
 ```
 
 ---
 
 # 🔑 **Permission Matrix**
 
-<div style="background:#0D0D0D; padding:15px; border-radius:10px;">
+<div style="background:#0D0D0D; padding:18px; border-radius:12px;">
 
-| Feature | Admin | Project Admin | Member |
-|--------|:-----:|:-------------:|:------:|
-| Create Projects | ✔ | ✖ | ✖ |
-| Edit/Delete Projects | ✔ | ✖ | ✖ |
-| Manage Members | ✔ | ✖ | ✖ |
-| Create/Modify Tasks | ✔ | ✔ | ✖ |
-| View Tasks | ✔ | ✔ | ✔ |
-| Update Subtasks | ✔ | ✔ | ✔ |
-| Add/Delete Subtasks | ✔ | ✔ | ✖ |
-| Manage Notes | ✔ | ✖ | ✖ |
-| View Notes | ✔ | ✔ | ✔ |
+| Feature                    | Admin | Project Admin | Member |
+|---------------------------|:-----:|:-------------:|:------:|
+| Create Projects            | ✔ | ✖ | ✖ |
+| Update/Delete Projects     | ✔ | ✖ | ✖ |
+| Manage Members             | ✔ | ✖ | ✖ |
+| Create/Update/Delete Tasks | ✔ | ✔ | ✖ |
+| View Tasks                 | ✔ | ✔ | ✔ |
+| Update Subtask Status      | ✔ | ✔ | ✔ |
+| Create/Delete Subtasks     | ✔ | ✔ | ✖ |
+| Manage Notes               | ✔ | ✖ | ✖ |
+| View Notes                 | ✔ | ✔ | ✔ |
 
 </div>
 
@@ -155,23 +145,22 @@ src/
 
 # 📡 **API Endpoints**
 
-## 🔐 Authentication — `/api/v1/auth`
+## 🔐 Auth — `/api/v1/auth`
 ```
 POST /register
 POST /login
 POST /logout
 POST /refresh-token
-POST /forgot-password
-POST /reset-password/:resetToken
 POST /change-password
-POST /resend-email-verification
+POST /forgot-password
+POST /reset-password/:token
 GET  /verify-email/:verificationToken
 GET  /current-user
 ```
 
 ---
 
-## 🗂 Projects — `/api/v1/projects`
+## 📁 Projects — `/api/v1/projects`
 ```
 GET    /
 POST   /
@@ -215,32 +204,37 @@ DELETE /:projectId/n/:noteId
 
 ---
 
-# 🔒 **Current Security**
-- JWT access + refresh tokens  
-- bcrypt password hashing  
-- Email verification  
-- Input validation  
-- RBAC middleware  
-- CORS protection  
-- File validation  
+# 🎯 **What This Project Demonstrates (Your Skills)**
+
+### ✔ Building secure authentication systems  
+### ✔ Designing scalable backend architectures  
+### ✔ Working with MongoDB and Mongoose  
+### ✔ Implementing RBAC permissions  
+### ✔ Handling file uploads with validation  
+### ✔ Writing modular, maintainable code  
+### ✔ Creating real-world REST API structures  
+
+This positions you as a **strong backend engineer** with practical, hands-on skills.
 
 ---
 
-# 🚀 **Production Security To-Do**
-- Helmet headers  
-- Rate limiting  
-- Throttling  
+# 🚀 **Future Enhancements (Optional Add-ons)**  
+*(These show recruiters you understand production-grade security and scalability.)*
+
+- Rate limiting (prevent abuse)  
+- Helmet security headers  
+- Token blacklist system  
+- API activity logs  
+- XSS & injection sanitization  
 - CSRF protection  
-- XSS sanitization  
-- Token blacklist  
-- Suspicious login alerts  
+- OTP-based login  
+- WebSocket-based real-time updates  
+- Admin dashboard (Next.js or React)  
 
 ---
 
 <div align="center">
 
-## 💙 Thanks for Checking Out the Project!
-
-If you like this project, consider ⭐ starring the repository.
+## 💙 **If you find this project interesting, feel free to star ⭐ the repository!**
 
 </div>
